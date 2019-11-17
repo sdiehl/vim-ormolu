@@ -19,10 +19,13 @@ The specific flags for Ormolu can be configured by changing the Vim variable
 Installation
 ------------
 
-  $ stack install ormolu
-  $ cd ~/.vim/bundle -- vim
-  $ cd ~/.config/nvim/bundle -- neovim
-  $ git clone https://github.com/sdiehl/vim-ormolu.git
+First install ormolu via Stack and then unpack this repository into your vim
+configuration.
+
+    $ stack install ormolu
+    $ cd ~/.vim/bundle -- vim
+    $ cd ~/.config/nvim/bundle -- neovim
+    $ git clone https://github.com/sdiehl/vim-ormolu.git
 
 This plugin is compatible with [Vundle.vim] and [pathogen.vim].
 
