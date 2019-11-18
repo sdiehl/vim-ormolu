@@ -21,13 +21,20 @@ To disable the formatting on a specific buffer use `let b:ormolu_disable=1`.
 Installation
 ------------
 
-First install ormolu via Stack and then unpack this repository into your vim
-configuration.
+First install ormolu via Stack or Nix:
 
-    $ stack install ormolu
-    $ cd ~/.vim/bundle -- vim
-    $ cd ~/.config/nvim/bundle -- neovim
-    $ git clone https://github.com/sdiehl/vim-ormolu.git
+```console
+$ stack install ormolu  # via stack
+$ nix-build -A ormolu   # via nix
+```
+
+And then unpack this repository into your vim or neovim configuration directory.
+
+```console
+$ cd ~/.vim/bundle         # for vim
+$ cd ~/.config/nvim/bundle # for neovim
+$ git clone https://github.com/sdiehl/vim-ormolu.git
+```
 
 This plugin is compatible with [Vundle.vim] and [pathogen.vim].
 
