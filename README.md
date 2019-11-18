@@ -12,7 +12,9 @@ If you have a non-standard `$PATH` then set `g:ormolu_command` Vim variable to
 the location of the ormolu binary.
 
 The specific flags for Ormolu can be configured by changing the Vim variable
-`g:ormolu_command`.
+`g:ormolu_options`.
+
+To disable the formatting on a specific buffer use `let b:ormolu_disable=1`.
 
 [ormolu]: https://github.com/tweag/ormolu
 
