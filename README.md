@@ -5,16 +5,8 @@ Introduction
 ------------
 
 This is a plugin to integrate [ormolu] into your vim workflow. It will run
-ormolu on Haskell buffers every time they are saved similar to how `gofmt`. It
+ormolu on Haskell buffers every time they are saved similar to `gofmt`. It
 requires ormolu be accessible from your `$PATH`.
-
-If you have a non-standard `$PATH` then set `g:ormolu_command` Vim variable to
-the location of the ormolu binary.
-
-The specific flags for Ormolu can be configured by changing the Vim variable
-`g:ormolu_options`.
-
-To disable the formatting on a specific buffer use `let b:ormolu_disable=1`.
 
 [ormolu]: https://github.com/tweag/ormolu
 
@@ -40,6 +32,45 @@ This plugin is compatible with [Vundle.vim] and [pathogen.vim].
 
 [Vundle.vim]: https://github.com/gmarik/Vundle.vim
 [pathogen.vim]: https://github.com/tpope/vim-pathogen
+
+Configuration
+-------------
+
+*The default settings will work fine out of the box without any aditional
+configuration*.
+
+If you have a non-standard `$PATH` then set `g:ormolu_command` Vim variable to
+the location of the ormolu binary.
+
+The specific flags for Ormolu can be configured by changing the Vim variable
+`g:ormolu_options`. For example to use faster and unsafe formatting:
+
+```vim
+let g:ormolu_options=["--unsafe"]
+```
+
+To disable the formatting on a specific buffer use `let b:ormolu_disable=1`.
+
+If instead of formatting on save, you wish to bind formatting to a specific
+keypress add the following to your `.vimrc` or `init.vim`. For example to bind
+to the key sequence <kbd>t</kbd><kbd>f</kbd> use:
+
+```vim
+let b:ormolu_disable=1
+nnoremap tf :call RunOrmolu()<CR>
+```
+
+To toggle Ormolu formatting to <kbd>t</kbd><kbd>o</kbd> use:
+
+```vim
+nnoremap to :call ToggleOrmolu()<CR>
+```
+
+To disable Ormolu formatting to <kbd>t</kbd><kbd>d</kbd> use:
+
+```vim
+nnoremap to :call DisableOrmolu()<CR>
+```
 
 License
 -------

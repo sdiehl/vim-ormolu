@@ -26,21 +26,43 @@ function! s:OrmoluHaskell()
   endif
 endfunction
 
-function! s:RunOrmolu()
+function! s:OrmoluSave()
   if b:ormolu_disable == 1
     write
   else
-    let output = system(g:ormolu_command . " " . join(g:ormolu_options, ' ') . " " . bufname("%"))
-    if v:shell_error != 0
-      echom output
-    else
-      call s:OverwriteBuffer(output)
-      write
-    endif
+    call s:OrmoluHaskell()
   endif
+endfunction
+
+function! s:RunOrmolu()
+  let output = system(g:ormolu_command . " " . join(g:ormolu_options, ' ') . " " . bufname("%"))
+  if v:shell_error != 0
+    echom output
+  else
+    call s:OverwriteBuffer(output)
+    write
+  endif
+endfunction
+
+function! RunOrmolu()
+  call s:OrmoluHaskell()
+endfunction
+
+function! ToggleOrmolu()
+  if b:ormolu_disable == 1
+    let b:ormolu_disable = 0
+    echo "Ormolu formatting disabled."
+  else
+    let b:ormolu_disable = 1
+    echo "Ormolu formatting enabled."
+  endif
+endfunction
+
+function! DisableOrmolu()
+    let b:ormolu_disable = 0
 endfunction
 
 augroup ormolu-haskell
   autocmd!
-  autocmd BufWritePost *.hs call s:OrmoluHaskell()
+  autocmd BufWritePost *.hs call s:OrmoluSave()
 augroup END

@@ -1,2 +1,4 @@
 .git* export-ignore
-*.markdown export-ignore
+*.md export-ignore
+LICENSE export-ignore
+* text=auto
