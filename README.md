@@ -69,7 +69,7 @@ nnoremap to :call ToggleOrmolu()<CR>
 To disable Ormolu formatting to <kbd>t</kbd><kbd>d</kbd> use:
 
 ```vim
-nnoremap to :call DisableOrmolu()<CR>
+nnoremap td :call DisableOrmolu()<CR>
 ```
 
 License
