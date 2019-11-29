@@ -59,7 +59,13 @@ function! ToggleOrmolu()
 endfunction
 
 function! DisableOrmolu()
+    let b:ormolu_disable = 1
+    echo "Ormolu formatting disabled."
+endfunction
+
+function! EnableOrmolu()
     let b:ormolu_disable = 0
+    echo "Ormolu formatting enabled."
 endfunction
 
 augroup ormolu-haskell
