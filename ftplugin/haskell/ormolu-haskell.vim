@@ -51,10 +51,10 @@ endfunction
 function! ToggleOrmolu()
   if b:ormolu_disable == 1
     let b:ormolu_disable = 0
-    echo "Ormolu formatting disabled."
+    echo "Ormolu formatting enabled."
   else
     let b:ormolu_disable = 1
-    echo "Ormolu formatting enabled."
+    echo "Ormolu formatting disabled."
   endif
 endfunction
 
