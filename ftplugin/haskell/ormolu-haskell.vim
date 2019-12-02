@@ -70,5 +70,5 @@ endfunction
 
 augroup ormolu-haskell
   autocmd!
-  autocmd BufWritePost *.hs call s:OrmoluSave()
+  autocmd BufWritePost * if &filetype == 'haskell' | call s:OrmoluSave() | endif
 augroup END
