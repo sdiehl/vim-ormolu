@@ -7,6 +7,9 @@ endif
 if !exists("b:ormolu_disable")
   let b:ormolu_disable = 0
 endif
+if !exists("g:ormolu_disable")
+  let g:ormolu_disable = 0
+endif
 
 function! s:OverwriteBuffer(output)
   let winview = winsaveview()
@@ -69,6 +72,8 @@ function! EnableOrmolu()
 endfunction
 
 augroup ormolu-haskell
-  autocmd!
-  autocmd BufWritePost *.hs call s:OrmoluSave()
+  if g:ormolu_disable == 0
+    autocmd!
+    autocmd BufWritePost *.hs call s:OrmoluSave()
+  endif
 augroup END

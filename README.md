@@ -51,6 +51,8 @@ let g:ormolu_options=["--unsafe"]
 
 To disable the formatting on a specific buffer use `let b:ormolu_disable=1`.
 
+To disable the formatting globally use `let g:ormolu_disable=1`.
+
 If instead of formatting on save, you wish to bind formatting to a specific
 keypress add the following to your `.vimrc` or `init.vim`. For example to bind
 to the key sequence <kbd>t</kbd><kbd>f</kbd> use:
