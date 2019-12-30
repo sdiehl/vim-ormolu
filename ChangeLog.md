@@ -1,5 +1,10 @@
 # Change log for vim-ormolu
 
+## 0.4.0
+
+* Expose OrmoluBlock
+* Disable formatting globally with `g:ormolu_disable`.
+
 ## 0.3.0
 
 * Expose `RunOrmolu()`.
