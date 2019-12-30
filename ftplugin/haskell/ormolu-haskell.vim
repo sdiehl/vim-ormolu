@@ -47,6 +47,72 @@ function! s:RunOrmolu()
   endif
 endfunction
 
+function! OrmoluBlock()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    let length = 1 + (line_end-line_start)
+    let output = system(g:ormolu_command . " " . join(g:ormolu_options, ' '), lines)
+    let formatted = split(output, '\v\n')
+
+    if v:shell_error != 0
+      echom output
+    else
+
+      "echom length
+      "echom len(formatted)
+
+      if length > len(formatted)
+        let max = line_end - 1
+      else
+        let max = (line_start + len(formatted)) - 1
+      endif
+
+      "echom line_start
+      "echom max
+
+      " If the length of outputted code is longer than visual block append empty
+      " lines to fill
+      if len(formatted) > length
+        "echom "Longer"
+        "echom (len(formatted) - length)
+        let c = 0
+        while c < (len(formatted) - length)
+          call append(line_end, "")
+          let c = c+1
+        endwhile
+      endif
+
+      " If the length of outputted code is longer than visual block delete lines
+      if len(formatted) < length
+        "echom "Shorter"
+        let c = 0
+        "echom (length - len(formatted))
+        while c < (length - len(formatted))
+          normal! dd
+          let c = c+1
+        endwhile
+      endif
+
+      " Empty the visual block
+      let currentLine=line_start
+      while currentLine <= line_end
+        call setline(currentLine, "")
+        let currentLine = currentLine + 1
+      endwhile
+
+      " Replace with ormolu output
+      let currentLine=line_start
+      let ix=0
+      while currentLine <= max
+        "echom "Replacing"
+        call setline(currentLine, formatted[ix])
+        let currentLine = currentLine + 1
+        let ix = ix + 1
+      endwhile
+    endif
+endfunction
+
 function! RunOrmolu()
   call s:OrmoluHaskell()
 endfunction
