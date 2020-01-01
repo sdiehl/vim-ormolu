@@ -49,6 +49,18 @@ The specific flags for Ormolu can be configured by changing the Vim variable
 let g:ormolu_options=["--unsafe"]
 ```
 
+To disable the formatting on a specific buffer use `let b:ormolu_disable=1`.
+
+To disable the formatting globally use `let g:ormolu_disable=1`.
+
+If instead of formatting on save, you wish to bind formatting to a specific
+keypress add the following to your `.vimrc` or `init.vim`.  For example to bind
+file formatting to the key sequence <kbd>t</kbd><kbd>f</kbd> use:
+
+```vim
+nnoremap tf :call RunOrmolu()<CR>
+```
+
 To format a visual block range call `OrmoluBlock()` function. For example to
 bind to the key sequence <kbd>t</kbd><kbd>b</kbd> use:
 
@@ -56,20 +68,7 @@ bind to the key sequence <kbd>t</kbd><kbd>b</kbd> use:
 xnoremap tb :<c-u>call OrmoluBlock()<CR>
 ```
 
-To disable the formatting on a specific buffer use `let b:ormolu_disable=1`.
-
-To disable the formatting globally use `let g:ormolu_disable=1`.
-
-If instead of formatting on save, you wish to bind formatting to a specific
-keypress add the following to your `.vimrc` or `init.vim`.  For example to bind
-to the key sequence <kbd>t</kbd><kbd>f</kbd> use:
-
-```vim
-let b:ormolu_disable=1
-nnoremap tf :call RunOrmolu()<CR>
-```
-
-To toggle Ormolu formatting to <kbd>t</kbd><kbd>o</kbd> use:
+To toggle Ormolu formatting on a buffer <kbd>t</kbd><kbd>o</kbd> use:
 
 ```vim
 nnoremap to :call ToggleOrmolu()<CR>
@@ -81,8 +80,14 @@ To disable Ormolu formatting to <kbd>t</kbd><kbd>d</kbd> use:
 nnoremap td :call DisableOrmolu()<CR>
 ```
 
+To enable Ormolu formatting to <kbd>t</kbd><kbd>e</kbd> use:
+
+```vim
+nnoremap te :call EnableOrmolu()<CR>
+```
+
 License
 -------
 
 MIT License
-Copyright (c) 2019, Stephen Diehl
+Copyright (c) 2019-2020, Stephen Diehl
