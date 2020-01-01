@@ -4,11 +4,12 @@ endif
 if !exists("g:ormolu_options")
   let g:ormolu_options = [""]
 endif
-if !exists("b:ormolu_disable")
-  let b:ormolu_disable = 0
-endif
 if !exists("g:ormolu_disable")
   let g:ormolu_disable = 0
+endif
+if !exists("b:ormolu_disable")
+  " Inherit buffer level flag from global flag (default 0)
+  let b:ormolu_disable = g:ormolu_disable
 endif
 
 function! s:OverwriteBuffer(output)
@@ -30,7 +31,7 @@ function! s:OrmoluHaskell()
 endfunction
 
 function! s:OrmoluSave()
-  if b:ormolu_disable == 1
+  if (b:ormolu_disable == 1)
     write
   else
     call s:OrmoluHaskell()
@@ -59,23 +60,15 @@ function! OrmoluBlock()
       echom output
     else
 
-      "echom length
-      "echom len(formatted)
-
       if length > len(formatted)
         let max = line_end - 1
       else
         let max = (line_start + len(formatted)) - 1
       endif
 
-      "echom line_start
-      "echom max
-
       " If the length of outputted code is longer than visual block append empty
       " lines to fill
       if len(formatted) > length
-        "echom "Longer"
-        "echom (len(formatted) - length)
         let c = 0
         while c < (len(formatted) - length)
           call append(line_end, "")
@@ -85,9 +78,7 @@ function! OrmoluBlock()
 
       " If the length of outputted code is longer than visual block delete lines
       if len(formatted) < length
-        "echom "Shorter"
         let c = 0
-        "echom (length - len(formatted))
         while c < (length - len(formatted))
           normal! dd
           let c = c+1
@@ -120,26 +111,24 @@ endfunction
 function! ToggleOrmolu()
   if b:ormolu_disable == 1
     let b:ormolu_disable = 0
-    echo "Ormolu formatting enabled."
+    echo "Ormolu formatting enabled for " . bufname("%")
   else
     let b:ormolu_disable = 1
-    echo "Ormolu formatting disabled."
+    echo "Ormolu formatting disabled for " . bufname("%")
   endif
 endfunction
 
 function! DisableOrmolu()
     let b:ormolu_disable = 1
-    echo "Ormolu formatting disabled."
+    echo "Ormolu formatting disabled for " . bufname("%")
 endfunction
 
 function! EnableOrmolu()
     let b:ormolu_disable = 0
-    echo "Ormolu formatting enabled."
+    echo "Ormolu formatting enabled for " . bufname("%")
 endfunction
 
 augroup ormolu-haskell
-  if g:ormolu_disable == 0
-    autocmd!
-    autocmd BufWritePost *.hs call s:OrmoluSave()
-  endif
+  autocmd!
+  autocmd BufWritePost *.hs call s:OrmoluSave()
 augroup END
