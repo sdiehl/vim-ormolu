@@ -17,6 +17,7 @@ First install ormolu via Stack or Nix:
 
 ```console
 $ stack install ormolu --resolver=lts-14.14   # via stack
+$ cabal new-install ormolu --installdir=/home/user/.local/bin # via cabal
 $ nix-build -A ormolu   # via nix
 ```
 
