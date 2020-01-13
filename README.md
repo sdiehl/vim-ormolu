@@ -21,7 +21,8 @@ $ cabal new-install ormolu --installdir=/home/user/.local/bin # via cabal
 $ nix-build -A ormolu   # via nix
 ```
 
-And then unpack this repository into your vim or neovim configuration directory.
+If you are using **[pathogen.vim](https://github.com/tpope/vim-pathogen)** unpack
+this repository into your vim or neovim configuration directory.
 
 ```console
 $ cd ~/.vim/bundle         # for vim
@@ -29,10 +30,21 @@ $ cd ~/.config/nvim/bundle # for neovim
 $ git clone https://github.com/sdiehl/vim-ormolu.git
 ```
 
-This plugin is compatible with [Vundle.vim] and [pathogen.vim].
+If you are using **[Vundle](https://github.com/gmarik/Vundle.vim)** add the
+following to your configuration file:
 
-[Vundle.vim]: https://github.com/gmarik/Vundle.vim
-[pathogen.vim]: https://github.com/tpope/vim-pathogen
+```vim
+"Haskell Formatting
+Plugin 'sdiehl/vim-ormolu'
+```
+
+If you are using **[vim-plug](https://github.com/junegunn/vim-plug)** add the
+following to your configuration file:
+
+```vim
+"Haskell Formatting
+Plug 'sdiehl/vim-ormolu'
+```
 
 Configuration
 -------------
