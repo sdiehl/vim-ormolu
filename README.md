@@ -87,6 +87,12 @@ To enable Ormolu formatting to <kbd>t</kbd><kbd>e</kbd> use:
 nnoremap te :call EnableOrmolu()<CR>
 ```
 
+If you see quirky behavior using TypeApplications extesnions with the code being formatted into invalid Haskell, you probably need to enable `-XTypeApplications` globally because it is set in your global cabal file per this [issue](https://github.com/tweag/ormolu/issues/452).
+
+```vim
+let g:ormolu_options=["-o -XTypeApplications"]
+```
+
 License
 -------
 
