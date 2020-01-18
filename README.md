@@ -101,7 +101,10 @@ example to bind to the key sequence <kbd>t</kbd><kbd>b</kbd> use:
 xnoremap tb :<c-u>call OrmoluBlock()<CR>
 ```
 
-If you see quirky behavior using TypeApplications extesnions with the code being formatted into invalid Haskell, you probably need to enable `-XTypeApplications` globally because it is set in your global cabal file per this [issue](https://github.com/tweag/ormolu/issues/452).
+If you see quirky behavior using TypeApplications extensions with the code being
+formatted into invalid Haskell, you probably need to enable `-XTypeApplications`
+globally because it is set in your global cabal file per this
+[issue](https://github.com/tweag/ormolu/issues/452).
 
 ```vim
 let g:ormolu_options=["-o -XTypeApplications"]
