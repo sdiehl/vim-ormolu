@@ -74,13 +74,6 @@ file formatting to the key sequence <kbd>t</kbd><kbd>f</kbd> use:
 nnoremap tf :call RunOrmolu()<CR>
 ```
 
-To format a visual block range call `OrmoluBlock()` function. For example to
-bind to the key sequence <kbd>t</kbd><kbd>b</kbd> use:
-
-```vim
-xnoremap tb :<c-u>call OrmoluBlock()<CR>
-```
-
 To toggle Ormolu formatting on a buffer <kbd>t</kbd><kbd>o</kbd> use:
 
 ```vim
@@ -97,6 +90,15 @@ To enable Ormolu formatting to <kbd>t</kbd><kbd>e</kbd> use:
 
 ```vim
 nnoremap te :call EnableOrmolu()<CR>
+```
+
+To format a visual block range call `OrmoluBlock()` function. Ormolu doesn't
+normally work this way and usually requires more context on the module to
+format. So this feature is experimental and may not function as expected. For
+example to bind to the key sequence <kbd>t</kbd><kbd>b</kbd> use:
+
+```vim
+xnoremap tb :<c-u>call OrmoluBlock()<CR>
 ```
 
 If you see quirky behavior using TypeApplications extesnions with the code being formatted into invalid Haskell, you probably need to enable `-XTypeApplications` globally because it is set in your global cabal file per this [issue](https://github.com/tweag/ormolu/issues/452).
