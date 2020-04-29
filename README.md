@@ -13,10 +13,10 @@ requires ormolu be accessible from your `$PATH`.
 Installation
 ------------
 
-First install ormolu via Stack or Nix:
+First install ormolu via Cabal, Stack or Nix:
 
 ```console
-$ stack install ormolu --resolver=lts-14.14   # via stack
+$ stack install ormolu --resolver=lts-15.10   # via stack
 $ cabal new-install ormolu --installdir=/home/user/.local/bin # via cabal
 $ nix-build -A ormolu   # via nix
 ```
