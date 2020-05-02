@@ -13,12 +13,14 @@ if !exists("b:ormolu_disable")
 endif
 
 function! s:OverwriteBuffer(output)
-  let winview = winsaveview()
-  silent! undojoin
-  normal! gg"_dG
-  call append(0, split(a:output, '\v\n'))
-  normal! G"_dd
-  call winrestview(winview)
+  let l:curw=winsaveview()
+  try | silent undojoin | catch | endtry
+  let splitted = split(a:output, '\n')
+  if line('$') > len(splitted)
+    execute len(splitted) .',$delete'
+  endif
+  call setline(1, splitted)
+  call winrestview(l:curw)
 endfunction
 
 function! s:OrmoluHaskell()
