@@ -110,6 +110,13 @@ globally because it is set in your global cabal file per this
 let g:ormolu_options=["-o -XTypeApplications"]
 ```
 
+To manually install the formatter on a specific file extension invoke
+`RunOrmolu()` as a BufWritePre hook.
+
+```vim
+autocmd BufWritePre *.hs :call RunOrmolu()
+```
+
 License
 -------
 
