@@ -117,6 +117,14 @@ To manually install the formatter on a specific file extension invoke
 autocmd BufWritePre *.hs :call RunOrmolu()
 ```
 
+To run formatting inside an unsaved buffer as a scratchpad, set your buffer's
+filetype to `haskell` and then invoke any of the formatter commands (i.e. `:call
+RunOrmolu()`) or bind it key sequence as above.
+
+```vim
+set filetype=haskell
+```
+
 License
 -------
 
