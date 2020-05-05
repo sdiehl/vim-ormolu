@@ -13,14 +13,18 @@ if !exists("b:ormolu_disable")
 endif
 
 function! s:OverwriteBuffer(output)
-  let l:curw=winsaveview()
-  try | silent undojoin | catch | endtry
-  let splitted = split(a:output, '\n')
-  if line('$') > len(splitted)
-    execute len(splitted) .',$delete'
+  if &modifiable
+    let l:curw=winsaveview()
+    try | silent undojoin | catch | endtry
+    let splitted = split(a:output, '\n')
+    if line('$') > len(splitted)
+      execute len(splitted) .',$delete'
+    endif
+    call setline(1, splitted)
+    call winrestview(l:curw)
+  else
+    echom "Cannot write to non-modifiable buffer"
   endif
-  call setline(1, splitted)
-  call winrestview(l:curw)
 endfunction
 
 function! s:OrmoluHaskell()
@@ -34,19 +38,26 @@ endfunction
 
 function! s:OrmoluSave()
   if (b:ormolu_disable == 1)
-    write
+    if exists("bufname")
+    if &modifiable
+      write
+    endif
   else
     call s:OrmoluHaskell()
   endif
 endfunction
 
 function! s:RunOrmolu()
-  let output = system(g:ormolu_command . " " . join(g:ormolu_options, ' ') . " " . bufname("%"))
+  if exists("bufname")
+    let output = system(g:ormolu_command . " " . join(g:ormolu_options, ' ') . " " . bufname("%"))
+  else
+    let stdin=join(getline(1, '$'), "\n")
+    let output = system(g:ormolu_command . " " . join(g:ormolu_options, ' '), stdin)
+  endif
   if v:shell_error != 0
     echom output
   else
     call s:OverwriteBuffer(output)
-    write
   endif
 endfunction
 
