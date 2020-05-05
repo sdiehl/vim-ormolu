@@ -38,11 +38,11 @@ endfunction
 
 function! s:OrmoluSave()
   if (b:ormolu_disable == 1)
-    if exists("bufname")
-      write
-    endif
   else
     call s:OrmoluHaskell()
+  endif
+  if exists("bufname")
+    write
   endif
 endfunction
 
@@ -57,6 +57,9 @@ function! s:RunOrmolu()
     echom output
   else
     call s:OverwriteBuffer(output)
+    if exists("bufname")
+      write
+    endif
   endif
 endfunction
 
