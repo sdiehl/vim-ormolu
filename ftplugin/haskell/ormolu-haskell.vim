@@ -39,7 +39,6 @@ endfunction
 function! s:OrmoluSave()
   if (b:ormolu_disable == 1)
     if exists("bufname")
-    if &modifiable
       write
     endif
   else
