@@ -145,5 +145,5 @@ endfunction
 
 augroup ormolu-haskell
   autocmd!
-  autocmd BufWritePost *.hs call s:OrmoluSave()
+  autocmd BufWritePre *.hs call s:OrmoluSave()
 augroup END
