@@ -4,11 +4,12 @@ vim-ormolu
 Introduction
 ------------
 
-This is a plugin to integrate [ormolu] into your vim workflow. It will run
-ormolu on Haskell buffers every time they are saved similar to `gofmt`. It
-requires ormolu be accessible from your `$PATH`.
+This is a plugin to integrate [ormolu] or [fourmolu] into your vim workflow. It
+will run ormolu on Haskell buffers every time they are saved similar to `gofmt`.
+It requires ormolu be accessible from your `$PATH`.
 
 [ormolu]: https://github.com/tweag/ormolu
+[fourmolu]: https://github.com/parsonsmatt/fourmolu
 
 Installation
 ------------
