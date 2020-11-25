@@ -58,7 +58,7 @@ the location of the ormolu binary. For example if you want to use
 argument.
 
 ```vim
-let g:ormolu_command=["fourmolu"]
+let g:ormolu_command="fourmolu"
 ```
 
 The specific flags for Ormolu can be configured by changing the Vim variable
