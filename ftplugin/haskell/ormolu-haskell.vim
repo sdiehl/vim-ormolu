@@ -7,6 +7,9 @@ endif
 if !exists("g:ormolu_disable")
   let g:ormolu_disable = 0
 endif
+if !exists("g:ormolu_suppress_stderr")
+  let g:ormolu_suppress_stderr = 0
+endif
 if !exists("b:ormolu_disable")
   " Inherit buffer level flag from global flag (default 0)
   let b:ormolu_disable = g:ormolu_disable
@@ -47,11 +50,20 @@ function! s:OrmoluSave()
 endfunction
 
 function! s:RunOrmolu()
+  let cmd_base = g:ormolu_command . " " . join(g:ormolu_options, ' ')
   if exists("bufname")
-    let output = system(g:ormolu_command . " " . join(g:ormolu_options, ' ') . " " . bufname("%"))
+    let orm_cmd = cmd_base . " " . bufname("%")
+    if (g:ormolu_suppress_stderr == 1)
+      let orm_cmd = orm_cmd . " 2>/dev/null"
+    endif 
+    let output = system(orm_cmd)
   else
-    let stdin=join(getline(1, '$'), "\n")
-    let output = system(g:ormolu_command . " " . join(g:ormolu_options, ' '), stdin)
+    let orm_cmd = cmd_base
+    if (g:ormolu_suppress_stderr == 1)
+      let orm_cmd = orm_cmd . " 2>/dev/null"
+    endif 
+    let stdin = join(getline(1, '$'), "\n")
+    let output = system(orm_cmd, stdin)
   endif
   if v:shell_error != 0
     echom output
