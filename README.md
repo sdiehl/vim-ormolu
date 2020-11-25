@@ -61,6 +61,14 @@ argument.
 let g:ormolu_command="fourmolu"
 ```
 
+When using fourmolu with a configuration file, fourmolu prefixes output
+with a "Loaded config from: ..." message. In order to prevent this from being
+included in the reformatted file, set
+
+```vim
+let g:ormolu_suppress_stderr=1
+```
+
 The specific flags for Ormolu can be configured by changing the Vim variable
 `g:ormolu_options`. For example to use faster and unsafe formatting:
 
