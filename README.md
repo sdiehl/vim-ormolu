@@ -53,7 +53,13 @@ Configuration
 configuration*.
 
 If you have a non-standard `$PATH` then set `g:ormolu_command` Vim variable to
-the location of the ormolu binary.
+the location of the ormolu binary. For example if you want to use
+[fourmolu](https://github.com/parsonsmatt/fourmolu) instead pass this as the
+argument.
+
+```vim
+let g:ormolu_command=["fourmolu"]
+```
 
 The specific flags for Ormolu can be configured by changing the Vim variable
 `g:ormolu_options`. For example to use faster and unsafe formatting:
